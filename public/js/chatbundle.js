@@ -294,24 +294,24 @@ $('document').ready(function(){
 	var runonce = false;
 	$('.tabl').tab();
 	var user = ref.getAuth();
-	
+
 	var usersRef = ref.child('users');
 	if(!user)
 	{
 		window.location.href = "signin";
 	}
-        	
+
 	var meRef = usersRef.child(user.uid);
 	meRef.on("value", function(snap){
 		name = snap.val().username;
 		lang = snap.val().language;
 	});
-		
+
 	var gRef = meRef.child('groups');
 	gRef.on('child_added', function(snap) {
-		
+
 		name =snap.val().username;
-		$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+snap.val().name+'"> '+snap.val().name+' </a>');
+		$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+snap.val().name+'"> <span>'+snap.val().name+'</span></a>');
 		$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+snap.val().name+'" id="ran"></div>');
 		socket.emit('join', {room: snap.val().name});
 		$('.tabl').tab();
@@ -330,14 +330,14 @@ $('document').ready(function(){
 			runonce = true;
 		}*/
 	});
-        
+
         $('#closable-message .close')
           .on('click', function() {
             $(this)
               .closest('.message')
               .transition('fade');
-        });	
-	
+        });
+
         $('#random').click(function(){
 		socket.emit('waiting');
 	});
@@ -349,12 +349,12 @@ $('document').ready(function(){
 
 	$('#sender').click(function(){
 		sendmess();
-	});	
-	
+	});
+
 	$('#groupbutton').click(function(){
 		joingroup();
 	});
-	
+
 	$('#groupinput').keydown(function(key)
 	{
 		if(key.which == 13)
@@ -362,7 +362,7 @@ $('document').ready(function(){
 			joingroup();
 		}
 	});
-	
+
 	$('#messfield').keydown(function(key)
 	{
 		if(key.which == 13)
@@ -370,22 +370,22 @@ $('document').ready(function(){
 			sendmess();
 		}
 	});
-	
+
 	$('body').on('click', '.tabl', function(event)
 	{
 		myroom = $(this).data('tab');
 	});
-	
+
 	$('#addfriend').click(function()
 	{
 		$('#friendadder').modal('toggle');
 	});
-	
+
 	$('#groupjoin').click(function()
 	{
 		$('#groupjoiner').modal('toggle');
 	});
-	
+
 	$('#groupcancel').click(function()
 	{
 		$('#groupjoiner').modal('toggle');
@@ -401,16 +401,16 @@ $('document').ready(function(){
 		$('.tabl').tab();
 		$('#tfriend').click();
 
-		
+
 	});
-	
+
 	socket.on('gotmessage', function(data){
 
-		
+
 		socket.emit('translate', {name: data.name, room: data.room, message: data.message, lang: lang});
 		//newmessage(data);
 	});
-	
+
 	socket.on('translated', function(data){
 		newmessage(data);
 	});
@@ -421,7 +421,7 @@ $('document').ready(function(){
 		//$('#ran').append('<p>&#60'+data.name+'&#62'+data.message+'<p>');
 		$("div[data-tab='"+ data.room + "']").scrollTop($("div[data-tab='"+data.room+"']").prop("scrollHeight"));
 	}
-	
+
 	function sendmess()
 	{
 		var mess = $('#messfield').val();
