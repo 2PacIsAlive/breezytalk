@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>BreezyTalk</title>
+		<meta name="description" content="Shoot the breeze with people all over the world" />
+		<meta name="keywords" content="translation, chat, breezy, breezytalk" />
+		<link rel="shortcut icon" href="../assets/BreezyLogo.ico">
+		<link rel="stylesheet" type="text/css" href="/css/codrops/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="/css/codrops/demo.css" />
+		<link rel="stylesheet" type="text/css" href="/css/codrops/menu_topside.css" />
+		<link rel="stylesheet" type="text/css" href="/css/chat.css"/>
+		<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="/js/chatbundle.js"></script>
+		<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+		<script src="semantic/dist/semantic.min.js"></script>
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div id="friendadder" class="ui basic modal">
+			<i class="close icon"></i>
+			<div class="header">
+				<p class="centered">Add to which group?<p>
+			</div>
+			<button class="ui button"> Group 1 </button>
+			<button class="ui button"> Group 2 </button>
+		</div>
+		<div id="groupjoiner" class="ui basic modal">
+			<i class="close icon"></i>
+			<div class="header">
+				<p>Enter Room Name<p>
+			</div>
+			<div class="ui fluid action input">
+				<div class="ui button" id="groupcancel">Cancel</div>
+					<input type="text" id="groupinput" placeholder="">
+				<div class="ui button" id="groupbutton">Join</div>
+			</div>
+    </div>
+
+		<div class="container">
+			<div class="menu-wrap">
+				<nav class="menu-top">
+					<div class="profile"><img src="../assets/BreezyTalk.ico" alt="Matthew Greenberg"/><span>BreezyTalk</span></div>
+						<div class="icon-list">
+							<div class="ui visible inverted left vertical sidebar menu">
+								<a class="ui inverted item tabl randomer" data-tab="random" id="random">
+									<i class="leaf icon"></i>
+								</a>
+								<a class="item" id="addfriend">
+									<i class="users icon"></i>
+								</a>
+								<a class="ui inverted item "  id="groupjoin">
+									<i class="search icon"></i>
+								</a>
+								<a class="ui inverted item tabl randomer" id="tfriend" data-tab="random">
+									<i class="arrow circle left icon"></i>
+								</a>
+								<a class="ui inverted item "  id="Logout">
+									<i class="sign out icon"></i>
+								</a>
+							</div>
+						</div>
+					</nav>
+				<nav class="menu-side">
+					<a href="#">Find Random Friend</a>
+					<a href="#">Add Current Friend to Group</a>
+					<a href="#">Join Group</a>
+					<a href="#">Return to Random Chat</a>
+					<a href="#">Logout</a>
+					<div class="ui inverted accordion" id="accordion-parent">
+          	<div class="inverted title">
+							<i class="dropdown icon"></i>
+								Your Groups
+						</div>
+					<div class="inverted content" id="grouplist">
+				</div>
+			</div>
+        <div class="ui message" id="closable-message">
+          <i class="close icon"></i>
+          <div class="header">
+            Welcome!
+          </div>
+        	<p>Here you can chat with random people from all over the world. Speak freely, because regardless of whether you find a new friend or link up with your favorite group, you'll find no language barriers here. Enjoy shooting the breeze! </p>            </div>
+				</div>
+			</nav>
+			<button class="menu-button" id="open-button">Menu</button>
+			<div class="content-wrap">
+				<div class="content">
+					<div class="pusher" id="lower">
+						<div class="chatbox ui tab segment" data-tab="zero" id="ran">
+					</div>
+						<!--<div class="chatbox ui tab segment" data-tab="random" id="ran">
+						</div>-->
+					<div class="ui fluid action input">
+						<input id="messfield" type="text" placeholder="Say Something">
+						<div class="ui button" id="sender">Send</div>
+					</div>
+				</div>
+				</div>
+			</div><!-- /content-wrap -->
+		</div><!-- /container -->
+		<script src="/js/codrops/classie.js"></script>
+		<script src="/js/codrops/main.js"></script>
+	</body>
+</html>
