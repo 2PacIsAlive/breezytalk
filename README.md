@@ -4,3 +4,7 @@
 
 Jared Jolton
 Raylyn Pettigrew
+Logan Brandt
+Eric Minor 
+
+# breezytalk 
