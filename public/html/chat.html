@@ -7,10 +7,10 @@
 		<title>BreezyTalk</title>
 		<meta name="description" content="Shoot the breeze with people all over the world." />
 		<meta name="keywords" content="translation, chat, chatting, shoot, the, breeze" />
-		<link rel="stylesheet" type="text/css" href="css/chat.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/chat.css"/>
 		<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="js/chatbundle.js"></script>
+		<script src="/js/chatbundle.js"></script>
 		<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 		<script src="semantic/dist/semantic.min.js"></script>
 		<link rel="shortcut icon" href="../assets/BreezyLogo.ico">
@@ -22,53 +22,73 @@
 		<![endif]-->
 	</head>
 	<body>
+		<!-- MODALS ================================================= -->
+		<div id="friendadder" class="ui basic modal">
+			<i class="close icon"></i>
+			<div class="header">
+				<p class="centered">Add to which group?<p>
+			</div>
+			<button class="ui button"> Group 1 </button>
+			<button class="ui button"> Group 2 </button>
+		</div>
+		<div id="groupjoiner" class="ui basic modal">
+			<div style="text-align:left; padding-left: 20%;" class="header">
+				<p>Enter Room Name<p>
+			</div>
+			<div style="padding-left: 19%; max-width: 1024px; margin: 5px" class="ui fluid action input">
+				<div class="ui button" id="groupcancel">Cancel</div>
+				<input type="text" id="groupinput" placeholder="">
+				<div class="ui button" id="groupbutton">Join</div>
+			</div>
+		</div>
+		<!-- END MODALS ============================================= -->
+		<!-- MENU =================================================== -->
 		<div class="container">
 			<div class="menu-wrap">
 				<nav class="menu">
+		<!-- ICON LIST ============================================== -->
 					<div class="icon-list">
-						<a href="#"><i class="leaf icon"></i><span>Find Random Friend</span></a>
-						<a href="#"><i class="users icon"></i><span>Add Current Friend to Group</span></a>
-						<a href="#"><i class="search icon"></i><span>Join Group</span></a>
-						<a href="#"><i class="arrow circle left icon"></i><span>Return to Random Chat</span></a>
-						<a href="#"><i class="sign out icon"></i><span>Logout</span></a>
-						<a href="#"><i class="fa fa-fw fa-newspaper-o"></i><span>Reading List</span></a>
+						<a id="random"><i class="leaf icon"></i><span>Find Random Friend</span></a>
+						<a id="addfriend"><i class="users icon"></i><span>Add Current Friend to Group</span></a>
+						<a id="groupjoin"><i class="search icon"></i><span>Join Group</span></a>
+						<a id="tfriend"><i class="arrow circle left icon"></i><span>Return to Random Chat</span></a>
+						<a id="logout"><i class="sign out icon"></i><span>Logout</span></a>
+						<div class="ui inverted accordion" id="accordion-parent">
+							<div class="inverted title">
+								<i class="dropdown icon"></i>
+									Your Groups
+							</div>
+							<div class="inverted content" id="grouplist">
+							</div>
+						</div>
+						<div class="ui message" id="closable-message">
+							<i class="close icon"></i>
+							<div class="header">
+								Welcome!
+							</div>
+							<p>Here you can chat with random people from all over the world. Speak freely, because regardless of whether you find a new friend or link up with your favorite group, you'll find no language barriers here. Enjoy shooting the breeze! </p>
+						</div>
 					</div>
+		<!-- END ICON LIST ========================================== -->
 				</nav>
 				<button class="close-button" id="close-button">Close Menu</button>
 			</div>
 			<button class="menu-button" id="open-button">Open Menu</button>
+		<!-- END MENU =============================================== -->
 			<div class="content-wrap">
 				<div class="content">
-					<header class="codrops-header">
-						<div class="codrops-links">
-							<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/TabStylesInspiration/"><span>Previous Demo</span></a>
-							<a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=20100"><span>Back to the Codrops Article</span></a>
+		<!-- PUSHER ==================================================-->
+					<div class="pusher" id="lower">
+						<div class="chatbox ui tab segment" data-tab="zero" id="ran">
 						</div>
-						<h1>Off-Canvas Menu Effects <span>Showing (off-canvas) menus stylishly</span></h1>
-						<nav class="codrops-demos">
-							<a href="index.html">Top Side</a>
-							<a class="current-demo" href="sideslide.html">Side Slide</a>
-							<a href="cornerbox.html">Corner Box</a>
-							<a href="cornerbox_nested.html">Nested Corner Box</a>
-							<a href="topexpand.html">Top Expand</a>
-							<a href="cornermorph.html">Corner Morph</a>
-							<a href="elastic.html">Elastic</a>
-							<a href="bubble.html">Bubble</a>
-							<a href="wave.html">Wave</a>
-						</nav>
-					</header>
-					<!-- Related demos -->
-					<section class="related">
-						<p>If you enjoyed this demo you might also like:</p>
-						<a href="http://tympanus.net/Development/SidebarTransitions/">
-							<img src="img/related/sidebartransitions.png" />
-							<h3>Transitions for Off-Canvas Navigations</h3>
-						</a>
-						<a href="http://tympanus.net/Development/PerspectivePageViewNavigation/">
-							<img src="img/related/PerspectiveNavigation.png" />
-							<h3>Perspective Page View Navigation</h3>
-						</a>
-					</section>
+						<!--<div class="chatbox ui tab segment" data-tab="random" id="ran">
+						</div>-->
+						<div class="ui fluid action input">
+							<input id="messfield" type="text" placeholder="Say Something">
+							<div class="ui button" id="sender">Send</div>
+						</div>
+					</div>
+		<!-- END PUSHER ===============================================-->
 				</div>
 			</div><!-- /content-wrap -->
 		</div><!-- /container -->
