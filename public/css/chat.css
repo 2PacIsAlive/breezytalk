@@ -44,3 +44,9 @@ body
 {
 	text-align: center;
 }
+
+.chatbox.ui.tab.segment
+{
+  position: relative;
+  z-index: 100;
+}
